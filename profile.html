@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Profile - ShopEasy</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    body {
+      background-color: #f4f7fa;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .profile-container {
+      max-width: 700px;
+      margin: 2em auto;
+      background: #fff;
+      border-radius: 12px;
+      padding: 2em;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5em;
+      margin-bottom: 2em;
+    }
+
+    .profile-header img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .profile-header h2 {
+      margin: 0;
+      font-size: 1.6em;
+    }
+
+    .profile-header p {
+      margin: 5px 0 0;
+      color: #555;
+    }
+
+    .profile-section {
+      margin-top: 1.5em;
+    }
+
+    .profile-section h3 {
+      font-size: 1.2em;
+      margin-bottom: 0.8em;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 0.3em;
+      color: #333;
+    }
+
+    .editable-field {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1em;
+    }
+
+    .editable-field label {
+      font-weight: 500;
+      margin-bottom: 0.3em;
+    }
+
+    .editable-field input, .editable-field textarea {
+      padding: 0.6em;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1em;
+    }
+
+    .save-btn {
+      margin-top: 1em;
+      background-color: #ff6f61;
+      color: white;
+      padding: 0.7em 1.4em;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .save-btn:hover {
+      background-color: #e85b50;
+    }
+
+    .profile-section ul {
+      padding-left: 1em;
+      margin: 0.5em 0;
+    }
+
+    .profile-section ul li {
+      margin-bottom: 0.5em;
+    }
+
+    @media (max-width: 500px) {
+      .profile-header {
+        flex-direction: column;
+        text-align: center;
+      }
+      .profile-header img {
+        margin-bottom: 0.5em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-container">
+    <div class="profile-header">
+      <img src="images/user.png" alt="User Photo" />
+      <div>
+        <h2 id="username">John Doe</h2>
+        <p id="useremail">johndoe@mail.com</p>
+      </div>
+    </div>
+
+    <div class="profile-section">
+      <h3>Edit Profile</h3>
+      <form id="profile-form">
+        <div class="editable-field">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" />
+        </div>
+        <div class="editable-field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" />
+        </div>
+        <div class="editable-field">
+          <label for="address">Address</label>
+          <textarea id="address" name="address" rows="3"></textarea>
+        </div>
+        <button type="submit" class="save-btn">Save Changes</button>
+      </form>
+    </div>
+
+    <div class="profile-section">
+      <h3>My Orders</h3>
+      <ul>
+        <li>Order #123456 - Delivered</li>
+        <li>Order #123457 - In Transit</li>
+        <li>Order #123458 - Cancelled</li>
+      </ul>
+    </div>
+
+    <div class="profile-section">
+      <h3>Saved Addresses</h3>
+      <ul>
+        <li>123 Main Street, Chennai</li>
+        <li>45B Park Avenue, Bengaluru</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    // On page load: Load from localStorage or default
+    document.addEventListener("DOMContentLoaded", function () {
+      const user = JSON.parse(localStorage.getItem("userProfile")) || {
+        name: "John Doe",
+        email: "johndoe@mail.com",
+        address: "123 Street, City, Country"
+      };
+
+      // Populate fields
+      document.getElementById("username").textContent = user.name;
+      document.getElementById("useremail").textContent = user.email;
+      document.getElementById("name").value = user.name;
+      document.getElementById("email").value = user.email;
+      document.getElementById("address").value = user.address;
+    });
+
+    document.getElementById("profile-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const updatedUser = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        address: document.getElementById("address").value
+      };
+
+      // Save to localStorage
+      localStorage.setItem("userProfile", JSON.stringify(updatedUser));
+
+      // Update visible fields
+      document.getElementById("username").textContent = updatedUser.name;
+      document.getElementById("useremail").textContent = updatedUser.email;
+
+      alert("Profile updated successfully!");
+    });
+  </script>
+</body>
+</html>

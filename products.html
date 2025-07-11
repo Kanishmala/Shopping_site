@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Products - ShopEasy</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    body {
+      background-color: aliceblue;
+      margin: 0;
+      font-family: sans-serif;
+    }
+  
+    .product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2em;
+  padding: 0.5em;
+  max-width: 100%;
+  width: 100%;
+  margin: 30px;
+}
+
+.container {
+  padding: 0;
+  margin: 0;
+}
+
+  
+    .product-card {
+      background: white;
+      padding: 1em;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+    }
+  
+    .product-card:hover {
+      transform: scale(1.02);
+    }
+  
+    .product-card img {
+      width: 100%;
+      height: 470px; /* wider, taller image */
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+    }
+    
+    
+    @media (max-width: 1200px) {
+      .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  
+    @media (max-width: 768px) {
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  
+    @media (max-width: 480px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .add-to-cart {
+  background-color: blue;
+  color: white;
+  padding: 0.6em 1.2em;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 0.8em;
+  width: 100%; /* Optional: make button span full width of card */
+}
+
+.add-to-cart:hover {
+  background-color: #e85b50;
+  transform: scale(1.03);
+}
+
+  </style>
+  
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">ShopEasy</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="cart.html">Cart</a></li>
+      <li><a href="profile.html">Profile</a></li>
+    </ul>
+  </nav>
+
+  <!-- Product Section -->
+  <section class="products">
+    <h2>Our Products</h2>
+    <div class="product-grid">
+
+      <!-- Product 1 -->
+    <div class="product-card">
+  <img src="images/image1.png" alt="Stylish T-Shirt">
+  <h3>Stylish T-Shirt</h3>
+  <p>Comfortable cotton t-shirt for daily wear.</p>
+  <div class="price">₹499</div>
+  <div class="stars">⭐⭐⭐⭐☆</div>
+  <button class="btn add-to-cart"
+  data-id="1"
+  data-name="Stylish T-Shirt"
+  data-price="499"
+  data-img="images/image1.png">
+  Add to Cart
+</button>
+
+</div>
+
+<!-- Product 2 -->
+<div class="product-card">
+  <img src="images/image2.png" alt="Bluetooth Headphones">
+  <h3>Bluetooth Headphones</h3>
+  <p>High-quality sound and noise cancellation.</p>
+  <div class="price">₹1499</div>
+  <div class="stars">⭐⭐⭐⭐⭐</div>
+  <button class="btn add-to-cart"
+  data-id="2"
+  data-name="Bluetooth Headphones"
+  data-price="1499"
+  data-img="images/image2.png">
+  Add to Cart
+</button>
+
+</div>
+
+<!-- Product 3 -->
+<div class="product-card">
+  <img src="images/image3.png" alt="Running Shoes">
+  <h3>Running Shoes</h3>
+  <p>Perfect for running and workouts.</p>
+  <div class="price">₹2199</div>
+  <div class="stars">⭐⭐⭐⭐☆</div>
+  <button class="btn add-to-cart"
+  data-id="3"
+  data-name="Running Shoes"
+  data-price="2199"
+  data-img="images/image3.png">
+  Add to Cart
+</button>
+  
+</div>
+
+<!-- Product 4 -->
+<div class="product-card">
+  <img src="images/image4.png" alt="Smart Watch">
+  <h3>Smart Watch</h3>
+  <p>Track your fitness and notifications.</p>
+  <div class="price">₹2999</div>
+  <div class="stars">⭐⭐⭐⭐⭐</div>
+  <button class="btn add-to-cart"
+  data-id="4"
+  data-name="Smart Watch"
+  data-price="2999"
+  data-img="images/image4.png">
+  Add to Cart
+</button>
+
+</div>
+
+<!-- Product 5 -->
+<div class="product-card">
+  <img src="images/image5.png" alt="Travel Backpack">
+  <h3>Travel Backpack</h3>
+  <p>Spacious and durable backpack for travel and school.</p>
+  <div class="price">₹999</div>
+  <div class="stars">⭐⭐⭐⭐☆</div>
+  <button class="btn add-to-cart"
+  data-id="5"
+  data-name="Travel Backpack"
+  data-price="999"
+  data-img="images/image5.png">
+  Add to Cart
+</button>
+
+</div>
+
+<!-- Product 6 -->
+<div class="product-card">
+  <img src="images/image6.png" alt="Cool Sunglasses">
+  <h3>Cool Sunglasses</h3>
+  <p>Trendy and UV-protected sunglasses.</p>
+  <div class="price">₹799</div>
+  <div class="stars">⭐⭐⭐☆☆</div>
+  <button class="btn add-to-cart"
+  data-id="6"
+  data-name="Cool Sunglasses"
+  data-price="799"
+  data-img="images/image6.png">
+  Add to Cart
+</button>
+
+</div>
+
+<!-- Product 7 -->
+<div class="product-card">
+  <img src="images/image7.png" alt="DSLR Camera">
+  <h3>DSLR Camera</h3>
+  <p>Capture stunning photos with precision.</p>
+  <div class="price">₹45999</div>
+  <div class="stars">⭐⭐⭐⭐⭐</div>
+  <button class="btn add-to-cart"
+  data-id="7"
+  data-name="DSLR Camera"
+  data-price="45999"
+  data-img="images/image7.png">
+  Add to Cart
+</button>
+
+</div>
+
+<!-- Product 8 -->
+<div class="product-card">
+  <img src="images/image8.png" alt="Coffee Mug">
+  <h3>Coffee Mug</h3>
+  <p>Ceramic mug for your morning coffee fix.</p>
+  <div class="price">₹299</div>
+  <div class="stars">⭐⭐⭐⭐☆</div>
+  <button class="btn add-to-cart"
+  data-id="8"
+  data-name="Coffee Mug"
+  data-price="299"
+  data-img="images/image8.png">
+  Add to Cart
+</button>
+
+</div>
+
+<!-- Product 9 -->
+<div class="product-card">
+  <img src="images/image9.png" alt="Gaming Mouse">
+  <h3>Gaming Mouse</h3>
+  <p>Responsive and customizable gaming mouse.</p>
+  <div class="price">₹1299</div>
+  <div class="stars">⭐⭐⭐⭐☆</div>
+  <button class="btn add-to-cart"
+  data-id="9"
+  data-name="Gaming Mouse"
+  data-price="1299"
+  data-img="images/image9.png">
+  Add to Cart
+</button>
+
+</div>
+
+<!-- Product 10 -->
+<div class="product-card">
+  <img src="images/image10.png" alt="Mechanical Keyboard">
+  <h3>Mechanical Keyboard</h3>
+  <p>Clicky keys and RGB lighting for gamers.</p>
+  <div class="price">₹1799</div>
+  <div class="stars">⭐⭐⭐⭐⭐</div>
+  <button class="btn add-to-cart"
+  data-id="10"
+  data-name="Mechanical Keyboard"
+  data-price="1799"
+  data-img="images/image10.png">
+  Add to Cart
+</button>
+
+
+</div>
+
+<!-- Product 11 -->
+<div class="product-card">
+  <img src="images/image11.png" alt="Men’s Jacket">
+  <h3>Men’s Jacket</h3>
+  <p>Stylish and warm for winter days.</p>
+  <div class="price">₹2399</div>
+  <div class="stars">⭐⭐⭐☆☆</div>
+  <button class="btn add-to-cart"
+  data-id="11"
+  data-name="Men’s Jacket"
+  data-price="2399"
+  data-img="images/image11.png">
+  Add to Cart
+</button>
+
+</div>
+
+<!-- Product 12 -->
+<div class="product-card">
+  <img src="images/image12.png" alt="Women's Handbag">
+  <h3>Women's Handbag</h3>
+  <p>Elegant and spacious handbag for daily use.</p>
+  <div class="price">₹1499</div>
+  <div class="stars">⭐⭐⭐⭐☆</div>
+  <button class="btn add-to-cart"
+  data-id="12"
+  data-name="Women's Handbag"
+  data-price="1499"
+  data-img="images/image12.png">
+  Add to Cart
+</button>
+
+>
+</div>
+
+<!-- Product 13 -->
+<div class="product-card">
+  <img src="images/image13.png" alt="Bluetooth Speaker">
+  <h3>Bluetooth Speaker</h3>
+  <p>Portable and loud sound with deep bass.</p>
+  <div class="price">₹1999</div>
+  <div class="stars">⭐⭐⭐⭐⭐</div>
+  <button class="btn add-to-cart"
+  data-id="13"
+  data-name="Bluetooth Speaker"
+  data-price="1999"
+  data-img="images/image13.png">
+  Add to Cart
+</button>
+
+</div>
+
+<!-- Product 14 -->
+<div class="product-card">
+  <img src="images/image14.png" alt="Face Cream">
+  <h3>Face Cream</h3>
+  <p>Hydrating and refreshing cream for all skin types.</p>
+  <div class="price">₹499</div>
+  <div class="stars">⭐⭐⭐☆☆</div>
+  <button class="btn add-to-cart"
+  data-id="14"
+  data-name="Face Cream"
+  data-price="499"
+  data-img="images/image14.png">
+  Add to Cart
+</button>
+
+
+</div>
+
+<!-- Product 15 -->
+<div class="product-card">
+  <img src="images/image15.png" alt="Smart LED TV">
+  <h3>Smart LED TV</h3>
+  <p>Full HD smart TV with apps and streaming.</p>
+  <div class="price">₹25999</div>
+  <div class="stars">⭐⭐⭐⭐⭐</div>
+  <button class="btn add-to-cart"
+  data-id="15"
+  data-name="Smart LED TV"
+  data-price="25999"
+  data-img="images/image15.png">
+  Add to Cart
+</button>
+
+</div>
+
+<!-- Product 16 -->
+<div class="product-card">
+  <img src="images/image16.png" alt="Power Bank">
+  <h3>Power Bank</h3>
+  <p>10000mAh portable charger for all devices.</p>
+  <div class="price">₹899</div>
+  <div class="stars">⭐⭐⭐⭐☆</div>
+  <button class="btn add-to-cart"
+  data-id="16"
+  data-name="Power Bank"
+  data-price="899"
+  data-img="images/image16.png">
+  Add to Cart
+</button>
+
+</div>
+
+<!-- Product 17 -->
+<div class="product-card">
+  <img src="images/image17.png" alt="Makeup Kit">
+  <h3>Makeup Kit</h3>
+  <p>Complete set for all makeup essentials.</p>
+  <div class="price">₹1299</div>
+  <div class="stars">⭐⭐⭐⭐☆</div>
+  <button class="btn add-to-cart"
+  data-id="17"
+  data-name="Makeup Kit"
+  data-price="1299"
+  data-img="images/image17.png">
+  Add to Cart
+</button>
+
+</div>
+
+<!-- Product 18 -->
+<div class="product-card">
+  <img src="images/image18.png" alt="Steel Water Bottle">
+  <h3>Steel Water Bottle</h3>
+  <p>Eco-friendly and durable bottle.</p>
+  <div class="price">₹399</div>
+  <div class="stars">⭐⭐⭐☆☆</div>
+  <button class="btn add-to-cart"
+  data-id="18"
+  data-name="Steel Water Bottle"
+  data-price="399"
+  data-img="images/image18.png">
+  Add to Cart
+</button>
+
+</div>
+
+<!-- Product 19 -->
+<div class="product-card">
+  <img src="images/image19.png" alt="Book Set">
+  <h3>Book Set</h3>
+  <p>Combo of 3 best-selling novels.</p>
+  <div class="price">₹699</div>
+  <div class="stars">⭐⭐⭐⭐⭐</div>
+  <button class="btn add-to-cart"
+  data-id="19"
+  data-name="Book Set"
+  data-price="699"
+  data-img="images/image19.png">
+  Add to Cart
+</button>
+
+
+</div>
+
+<!-- Product 20 -->
+<div class="product-card">
+  <img src="images/image20.png" alt="Fitness Band">
+  <h3>Fitness Band</h3>
+  <p>Track steps, heart rate, and sleep quality.</p>
+  <div class="price">₹1799</div>
+  <div class="stars">⭐⭐⭐⭐☆</div>
+  <button class="btn add-to-cart"
+  data-id="20"
+  data-name="Fitness Band"
+  data-price="1799"
+  data-img="images/image20.png">
+  Add to Cart
+</button>
+
+</div>
+
+<!-- Product 21 -->
+<div class="product-card">
+  <img src="images/21.png" alt="Analog Watch">
+  <h3>Analog Watch</h3>
+  <p>Classic design with leather strap.</p>
+  <div class="price">₹1299</div>
+  <div class="stars">⭐⭐⭐⭐☆</div>
+  <button class="btn add-to-cart"
+  data-id="21"
+  data-name="Analog Watch"
+  data-price="1299"
+  data-img="images/21.png">
+  Add to Cart
+</button>
+
+</div>
+
+<!-- Product 22 -->
+<div class="product-card">
+  <img src="images/22.png" alt="Earphones">
+  <h3>Wired Earphones</h3>
+  <p>Clear sound with built-in mic.</p>
+  <div class="price">₹399</div>
+  <div class="stars">⭐⭐⭐☆☆</div>
+  <button class="btn add-to-cart"
+  data-id="22"
+  data-name="Wired Earphones"
+  data-price="399"
+  data-img="images/22.png">
+  Add to Cart
+</button>
+</div>
+
+<!-- Product 23 -->
+<div class="product-card">
+  <img src="images/23.png" alt="Desk Lamp">
+  <h3>Desk Lamp</h3>
+  <p>LED lamp with adjustable brightness.</p>
+  <div class="price">₹799</div>
+  <div class="stars">⭐⭐⭐⭐☆</div>
+  <button class="btn add-to-cart"
+  data-id="23"
+  data-name="Desk Lamp"
+  data-price="799"
+  data-img="images/23.png">
+  Add to Cart
+</button>
+</div>
+
+<!-- Product 24 -->
+<div class="product-card">
+  <img src="images/24.png" alt="Notebook">
+  <h3>Spiral Notebook</h3>
+  <p>College ruled notebook, 200 pages.</p>
+  <div class="price">₹149</div>
+  <div class="stars">⭐⭐⭐⭐☆</div>
+  <button class="btn add-to-cart"
+  data-id="24"
+  data-name="Spiral Notebook"
+  data-price="149"
+  data-img="images/24.png">
+  Add to Cart
+</button>
+</div>
+
+<!-- Product 25 -->
+<div class="product-card">
+  <img src="images/26.png" alt="Perfume">
+  <h3>Floral Perfume</h3>
+  <p>Long-lasting fragrance for all occasions.</p>
+  <div class="price">₹899</div>
+  <div class="stars">⭐⭐⭐⭐⭐</div>
+  <button class="btn add-to-cart"
+  data-id="25"
+  data-name="Floral Perfume"
+  data-price="899"
+  data-img="images/26.png">
+  Add to Cart
+</button>
+
+</div>
+
+<!-- Product 26 -->
+<div class="product-card">
+  <img src="images/27.png" alt="Tablet">
+  <h3>Android Tablet</h3>
+  <p>10-inch display, ideal for work and play.</p>
+  <div class="price">₹8999</div>
+  <div class="stars">⭐⭐⭐⭐☆</div>
+  <button class="btn add-to-cart"
+  data-id="26"
+  data-name="Android Tablet"
+  data-price="8999"
+  data-img="images/27.png">
+  Add to Cart
+</button>
+</div>
+
+<!-- Product 27 -->
+<div class="product-card">
+  <img src="images/28.png" alt="Bicycle">
+  <h3>Mountain Bicycle</h3>
+  <p>Durable and lightweight for off-road cycling.</p>
+  <div class="price">₹9999</div>
+  <div class="stars">⭐⭐⭐⭐☆</div>
+  <button class="btn add-to-cart"
+  data-id="27"
+  data-name="Mountain Bicycle"
+  data-price="9999"
+  data-img="images/28.png">
+  Add to Cart
+</button>
+</div>
+
+<!-- Product 28 -->
+<div class="product-card">
+  <img src="images/29.png" alt="Baseball Cap">
+  <h3>Baseball Cap</h3>
+  <p>Casual and comfortable headwear.</p>
+  <div class="price">₹399</div>
+  <div class="stars">⭐⭐⭐⭐☆</div>
+  <button class="btn add-to-cart"
+  data-id="28"
+  data-name="Baseball Cap"
+  data-price="399"
+  data-img="images/29.png">
+  Add to Cart
+</button>
+</div>
+
+<!-- Product 29 -->
+<div class="product-card">
+  <img src="images/30.png" alt="Leather Wallet">
+  <h3>Leather Wallet</h3>
+  <p>Compact and stylish wallet for men.</p>
+  <div class="price">₹799</div>
+  <div class="stars">⭐⭐⭐⭐☆</div>
+  <button class="btn add-to-cart"
+  data-id="29"
+  data-name="Leather Wallet"
+  data-price="799"
+  data-img="images/30.png">
+  Add to Cart
+</button>
+</div>
+
+<!-- Product 30 -->
+<div class="product-card">
+  <img src="images/31.png" alt="Wireless Earbuds">
+  <h3>Wireless Earbuds</h3>
+  <p>Compact earbuds with great sound quality.</p>
+  <div class="price">₹2499</div>
+  <div class="stars">⭐⭐⭐⭐⭐</div>
+  <button class="btn add-to-cart"
+  data-id="30"
+  data-name="Wireless Earbuds"
+  data-price="2499"
+  data-img="images/31.png">
+  Add to Cart
+</button></div>
+
+
+      <!-- Add 16 more products similarly... -->
+
+  </div>
+  </section>
+  <script>
+    function addToCart(product) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  
+      // Check if product already exists
+      const index = cart.findIndex(item => item.id === product.id);
+      if (index !== -1) {
+        cart[index].qty += 1;
+      } else {
+        product.qty = 1;
+        cart.push(product);
+      }
+  
+      localStorage.setItem('cart', JSON.stringify(cart));
+  
+      // ✅ Redirect to cart.html instead of alert
+      window.location.href = "cart.html";
+    }
+  
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+      button.addEventListener('click', () => {
+        const product = {
+          id: button.dataset.id,
+          name: button.dataset.name,
+          price: parseFloat(button.dataset.price),
+          img: button.dataset.img
+        };
+        addToCart(product);
+      });
+    });
+
+
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', () => {
+      const id = button.dataset.id;
+      const name = button.dataset.name;
+      const price = parseInt(button.dataset.price);
+      const img = button.dataset.img;
+
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const existing = cart.find(item => item.id == id);
+
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ id, name, price, img, qty: 1 });
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(`${name} added to cart!`);
+    });
+  });
+
+  </script>
+  
+    
+
+</body>
+</html>

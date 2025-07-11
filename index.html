@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shopping Site - Home</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    body{
+      background: url('images/bann.png') no-repeat center center/cover;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">ShopEasy</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="cart.html">Cart</a></li>
+      <li><a href="profile.html">Profile</a></li>
+    </ul>
+    <div id="user-section"></div>
+  </nav>
+
+  <!-- Banner / Hero Section -->
+  <section class="banner">
+    <h1>Big Sale is Live! 🎉</h1>
+    <p>Up to 50% off on all categories. Don't miss out!</p>
+    <a href="products.html" class="btn">Shop Now</a>
+  </section>
+
+  <!-- Categories Section -->
+  <section class="categories">
+    <h2>Shop by Category</h2>
+    <div class="category-grid">
+      <div class="category-card">
+        <img src="images/cl.png" alt="Clothes" />
+        <h3>Clothing</h3>
+      </div>
+      <div class="category-card">
+        <img src="images/ele.png" alt="Electronics" />
+        <h3>Electronics</h3>
+      </div>
+      <div class="category-card">
+        <img src="images/sh.png" alt="Shoes" />
+        <h3>Shoes</h3>
+      </div>
+      <div class="category-card">
+        <img src="images/hk.png" alt="Home" />
+        <h3>Home & Kitchen</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 ShopEasy. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Check session status from the server
+    fetch('backend/session_status.php')
+      .then(response => response.json())
+      .then(data => {
+        const userSection = document.getElementById('user-section');
+        if (data.loggedIn) {
+          userSection.innerHTML = `
+            👋 Welcome, ${data.username} 
+            <button onclick="logout()" class="logout-btn">Logout</button>
+          `;
+        } else {
+          userSection.innerHTML = `
+            <a href="login.html" class="login-link">Login</a> | 
+            <a href="register.html" class="register-link">Register</a>
+          `;
+        }
+      });
+
+    function logout() {
+      fetch('backend/logout.php')
+        .then(() => {
+          location.reload(); // Reload to reflect login status change
+        });
+    }
+  </script>
+
+</body>
+</html>

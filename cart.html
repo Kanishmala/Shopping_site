@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Your Cart</title>
+  <meta charset="UTF-8" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .cart-container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 25px;
+    }
+
+    .cart-item {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 50px;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 20px;
+    }
+
+    .cart-item img {
+      width: 250px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .cart-item .info {
+      flex: 1;
+    }
+
+    .cart-item .info h4 {
+      font-size: 22px;
+      margin: 0 0 10px;
+    }
+
+    .cart-item .info p {
+      font-size: 18px;
+      margin: 4px 0;
+    }
+
+    .qty-btn {
+      font-size: 18px;
+      padding: 8px 12px;
+      margin: 0 5px;
+      border: none;
+      background: #eee;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .remove-btn {
+      padding: 8px 14px;
+      background: crimson;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 15px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    #clear-cart, #place-order {
+      font-size: 18px;
+      padding: 12px 18px;
+      border: none;
+      border-radius: 5px;
+      margin-top: 25px;
+      margin-bottom: 25px;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    #clear-cart {
+      background: orange;
+      color: white;
+      margin-right: 10px;
+    }
+
+    #place-order {
+      background: green;
+      color: white;
+    }
+
+    #total {
+      font-size: 24px;
+      text-align: right;
+      margin-top: 20px;
+    }
+
+    /* Cart icon */
+    .cart-icon {
+      position: fixed;
+      top: 20px;
+      right: 30px;
+      font-size: 26px;
+    }
+
+    .cart-badge {
+      background: red;
+      color: white;
+      font-size: 15px;
+      border-radius: 50%;
+      padding: 4px 9px;
+      position: relative;
+      top: -15px;
+      left: -12px;
+    }
+
+    @media (max-width: 768px) {
+      .cart-item {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .cart-item img {
+        width: 100%;
+        height: auto;
+      }
+
+      #total {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Cart icon with badge -->
+  <div class="cart-icon">
+    🛒 <span class="cart-badge" id="cart-count">0</span>
+  </div>
+
+  <div class="cart-container">
+    <h2>Your Cart 🛒</h2>
+
+    <button id="clear-cart">🗑️ Clear Cart</button>
+    <div id="cart-items"></div>
+
+    <h3 id="total">Total: ₹0</h3>
+    <button id="place-order">✅ Place Order</button>
+  </div>
+
+  <script>
+    function renderCart() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const cartItemsContainer = document.getElementById('cart-items');
+      const cartCount = document.getElementById('cart-count');
+      cartItemsContainer.innerHTML = '';
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        total += item.price * item.qty;
+
+        const itemHTML = `
+          <div class="cart-item">
+            <img src="${item.img}" alt="${item.name}">
+            <div class="info">
+              <h4>${item.name}</h4>
+              <p>Price: ₹${item.price}</p>
+              <div>
+                <button class="qty-btn" onclick="updateQty(${index}, -1)">➖</button>
+                <span style="font-size:18px; margin: 0 10px;">${item.qty}</span>
+                <button class="qty-btn" onclick="updateQty(${index}, 1)">➕</button>
+              </div>
+              <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+            </div>
+          </div>
+        `;
+
+        cartItemsContainer.innerHTML += itemHTML;
+      });
+
+      document.getElementById('total').innerText = `Total: ₹${total}`;
+      cartCount.innerText = cart.reduce((sum, item) => sum + item.qty, 0);
+    }
+
+    function updateQty(index, change) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart[index].qty += change;
+      if (cart[index].qty <= 0) cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      renderCart();
+    }
+
+    function removeItem(index) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      renderCart();
+    }
+
+    document.getElementById('clear-cart').addEventListener('click', () => {
+      localStorage.removeItem('cart');
+      renderCart();
+    });
+
+    document.getElementById('place-order').addEventListener('click', () => {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+      }
+
+      fetch('backend/place_order.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(cart)
+      })
+      .then(response => response.text())
+      .then(data => {
+        if (data.includes("Please login")) {
+          alert("⚠️ You must log in to place an order.");
+          window.location.href = "login.html";
+          return;
+        }
+
+        alert(data);
+        if (data.includes("✅")) {
+          localStorage.removeItem('cart');
+          renderCart();
+        }
+      })
+      .catch(error => {
+        alert("Something went wrong. Try again!");
+        console.error(error);
+      });
+    });
+
+    // Load cart on page open
+    renderCart();
+  </script>
+</body>
+</html>
